@@ -10,4 +10,3 @@ Module #33: REST API - Architecture
 Module #34: Testing in java (TDD, BDD) with Junit or TestNG   
 Module #36: Search Engines (Solr, Lucene, Elastic Search)   
 Module #41: Code Quality   
-Module #53: Clean Code   
