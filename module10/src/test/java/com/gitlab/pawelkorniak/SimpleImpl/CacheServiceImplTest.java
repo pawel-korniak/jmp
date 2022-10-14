@@ -1,4 +1,4 @@
-package org.example.SimpleImpl;
+package com.gitlab.pawelkorniak.SimpleImpl;
 
 import net.datafaker.Faker;
 import org.testng.annotations.AfterClass;

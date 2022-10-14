@@ -1,4 +1,4 @@
-package org.example.service;
+package com.gitlab.pawelkorniak.service;
 
 import java.util.concurrent.ExecutionException;
 

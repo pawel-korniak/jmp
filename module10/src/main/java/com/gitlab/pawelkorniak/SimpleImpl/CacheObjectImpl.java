@@ -1,6 +1,6 @@
-package org.example.SimpleImpl;
+package com.gitlab.pawelkorniak.SimpleImpl;
 
-import org.example.service.CacheObject;
+import com.gitlab.pawelkorniak.service.CacheObject;
 
 public class CacheObjectImpl implements CacheObject {
 

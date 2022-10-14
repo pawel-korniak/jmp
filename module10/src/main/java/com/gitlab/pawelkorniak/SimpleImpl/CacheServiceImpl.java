@@ -1,7 +1,7 @@
-package org.example.SimpleImpl;
+package com.gitlab.pawelkorniak.SimpleImpl;
 
-import org.example.service.CacheObject;
-import org.example.service.CacheService;
+import com.gitlab.pawelkorniak.service.CacheObject;
+import com.gitlab.pawelkorniak.service.CacheService;
 
 import java.time.LocalTime;
 import java.util.Comparator;

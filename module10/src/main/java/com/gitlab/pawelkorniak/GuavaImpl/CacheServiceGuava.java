@@ -1,9 +1,9 @@
-package org.example.GuavaImpl;
+package com.gitlab.pawelkorniak.GuavaImpl;
 
+import com.gitlab.pawelkorniak.SimpleImpl.CacheObjectImpl;
 import com.google.common.cache.*;
-import org.example.SimpleImpl.CacheObjectImpl;
-import org.example.service.CacheObject;
-import org.example.service.CacheService;
+import com.gitlab.pawelkorniak.service.CacheObject;
+import com.gitlab.pawelkorniak.service.CacheService;
 
 import java.time.LocalTime;
 import java.util.concurrent.ExecutionException;

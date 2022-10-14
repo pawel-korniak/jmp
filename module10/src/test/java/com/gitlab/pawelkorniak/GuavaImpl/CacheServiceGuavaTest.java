@@ -1,7 +1,7 @@
-package org.example.GuavaImpl;
+package com.gitlab.pawelkorniak.GuavaImpl;
 
 import net.datafaker.Faker;
-import org.example.SimpleImpl.CacheObjectImpl;
+import com.gitlab.pawelkorniak.SimpleImpl.CacheObjectImpl;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
