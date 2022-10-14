@@ -1,5 +1,7 @@
 package org.example.SimpleImpl;
 
+import net.datafaker.Faker;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -9,30 +11,40 @@ import static org.testng.Assert.*;
 
 public class CacheServiceImplTest {
 
+    Faker faker = new Faker();
+
     @BeforeTest
-    public void setUp(){
+    public void setUp() {
         for (int i = 0; i < cacheService.MAX_SIZE; i++) {
-            cacheService.put(new CacheObjectImpl("object" + i));
+            String key = faker.name().fullName() + i;
+            cacheService.put(new CacheObjectImpl(key));
         }
     }
 
     CacheServiceImpl cacheService = new CacheServiceImpl();
 
     @Test
-    public void max_size_test(){
+    public void max_size_test() {
         int maxSize = cacheService.cacheEntries.size();
-        cacheService.put(new CacheObjectImpl("objectA"));
+        cacheService.put(new CacheObjectImpl(faker.name().fullName()));
         int maxSizeAfterPut = cacheService.cacheEntries.size();
         assertTrue(maxSize == maxSizeAfterPut, "Max size error");
 
     }
 
     @Test
-    public void strategy_test(){
-        cacheService.cacheEntries.forEach((k,v) -> {
-            if(!Objects.equals(k, "object10")) cacheService.get(k);// make entry for each objects except 'object10'
+    public void strategy_test() {
+        String fullName = faker.name().fullName();
+        cacheService.put(new CacheObjectImpl(fullName));
+        cacheService.cacheEntries.forEach((k, v) -> {
+            if (!Objects.equals(k, fullName)) cacheService.get(k);// make entry for each objects except fullName
         });
-        cacheService.put(new CacheObjectImpl("objectB"));
-        assertTrue(cacheService.get("object10") == null, "Strategy error");
+        cacheService.put(new CacheObjectImpl(faker.name().fullName()));
+        assertTrue(cacheService.get(fullName) == null, "Strategy error");
+    }
+
+    @AfterClass
+    public void showStatistics() {
+        cacheService.getStatistics();
     }
 }

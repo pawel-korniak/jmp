@@ -2,8 +2,8 @@ package org.example.SimpleImpl;
 
 import org.example.service.CacheObject;
 import org.example.service.CacheService;
-import org.example.service.RemovalListener;
 
+import java.time.LocalTime;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,11 +11,16 @@ import java.util.logging.Logger;
 
 public class CacheServiceImpl implements CacheService {
 
-    Logger logger = Logger.getLogger(CacheServiceImpl.class.getName());
     static final int MAX_SIZE = 100000;
-    RemovalListener removalListener = new RemovalListenerImpl();
+
+    Logger logger = Logger.getLogger(CacheServiceImpl.class.getName());
     Map<String,CacheObject> cacheEntries = new HashMap<>();
     Map<String,Integer> entriesCounters = new HashMap<>();
+
+    private long totalCacheEvictions;
+    private long totalTimeMs;
+    private long totalPuts;
+
     @Override
     public CacheObject get(String key) {
 
@@ -29,6 +34,7 @@ public class CacheServiceImpl implements CacheService {
 
     @Override
     public void put(CacheObject object) {
+        var start = LocalTime.now().toNanoOfDay();
         if (cacheEntries.size() >= MAX_SIZE){
             applyStrategy();
         }
@@ -36,19 +42,21 @@ public class CacheServiceImpl implements CacheService {
             cacheEntries.put(object.getKey(), object);
             entriesCounters.put(object.getKey(), 0);
         }
-//        logger.info("Object" +
-//                object.getKey() +
-//                " already exist");
+        totalTimeMs += (LocalTime.now().toNanoOfDay() - start);
+        totalPuts++;
+    }
+
+    @Override
+    public void getStatistics() {
+        logger.info("Statistics:\nTotal evictions: " + totalCacheEvictions +
+                "\nAverage time spent for putting values: " + (totalTimeMs/totalPuts) +
+                " nanoseconds"
+                );
     }
 
     private void applyStrategy() {
         var key = entriesCounters.entrySet().stream()
-                .sorted(new Comparator<Map.Entry<String, Integer>>() {
-                    @Override
-                    public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
-                        return o1.getValue() - o2.getValue();
-                    }
-                })
+                .sorted(Comparator.comparingInt(Map.Entry::getValue))
                 .findFirst()
                 .map(entry -> entry.getKey())
                 .get();
@@ -57,5 +65,6 @@ public class CacheServiceImpl implements CacheService {
                 );
         entriesCounters.remove(key);
         cacheEntries.remove(key);
+        totalCacheEvictions++;
     }
 }
