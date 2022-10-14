@@ -24,7 +24,7 @@ public class CacheServiceImplTest {
     CacheServiceImpl cacheService = new CacheServiceImpl();
 
     @Test
-    public void max_size_test() {
+    public void shouldNotexceedMaxSize() {
         int maxSize = cacheService.cacheEntries.size();
         cacheService.put(new CacheObjectImpl(faker.name().fullName()));
         int maxSizeAfterPut = cacheService.cacheEntries.size();
@@ -33,7 +33,7 @@ public class CacheServiceImplTest {
     }
 
     @Test
-    public void strategy_test() {
+    public void shouldApplyStartegy() {
         String fullName = faker.name().fullName();
         cacheService.put(new CacheObjectImpl(fullName));
         cacheService.cacheEntries.forEach((k, v) -> {
