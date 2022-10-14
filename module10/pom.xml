@@ -25,11 +25,6 @@
             <version>31.1-jre</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>29.0-jre</version>
-        </dependency>
     </dependencies>
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

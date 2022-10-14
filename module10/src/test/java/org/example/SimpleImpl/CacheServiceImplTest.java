@@ -40,7 +40,7 @@ public class CacheServiceImplTest {
             if (!Objects.equals(k, fullName)) cacheService.get(k);// make entry for each objects except fullName
         });
         cacheService.put(new CacheObjectImpl(faker.name().fullName()));
-        assertTrue(cacheService.get(fullName) == null, "Strategy error");
+        assertNull(cacheService.get(fullName));
     }
 
     @AfterClass
