@@ -5,5 +5,6 @@ java-build:
   # select the most appropriate image for your project
   image: maven:3.8-openjdk-17
   stage: build
+  coverage: '/Lines\s+:\s(\d+.?\d+)%/'
   script:
-    - mvn package
+    - mvn verify
