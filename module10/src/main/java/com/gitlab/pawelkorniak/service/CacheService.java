@@ -6,5 +6,5 @@ public interface CacheService<K,V> {
 
     V get(K key) throws ExecutionException;
     void put(V object);
-    void getStatistics();
+    void logStatistics();
 }

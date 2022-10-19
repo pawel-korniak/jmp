@@ -153,7 +153,7 @@
                     </excludeRoots>
                     <sourceEncoding>UTF-8</sourceEncoding>
                     <rulesets>
-                        <ruleset>/devtools/pmd_ruleset.xml</ruleset>
+                        <ruleset>devtools/pmd_ruleset.xml</ruleset>
                     </rulesets>
                     <printFailingErrors>true</printFailingErrors>
                 </configuration>
@@ -188,7 +188,7 @@
                 <configuration>
                     <skip>false</skip>
                     <failsOnError>true</failsOnError>
-                    <configLocation>/devtools/google_checks.xml</configLocation>
+                    <configLocation>devtools/google_checks.xml</configLocation>
                     <consoleOutput>true</consoleOutput>
                     <violationSeverity>error</violationSeverity>
                 </configuration>

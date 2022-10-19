@@ -1,4 +1,4 @@
-package com.gitlab.pawelkorniak.GuavaImpl;
+package com.gitlab.pawelkorniak.implementation.guava;
 
 import net.datafaker.Faker;
 import org.testng.annotations.AfterClass;
@@ -26,6 +26,6 @@ public class CacheServiceGuavaTest {
 
     @AfterClass
     public void showStatistics() {
-        cacheService.getStatistics();
+        cacheService.logStatistics();
     }
 }

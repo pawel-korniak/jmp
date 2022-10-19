@@ -1,4 +1,4 @@
-package com.gitlab.pawelkorniak.SimpleImpl;
+package com.gitlab.pawelkorniak.implementation.simple;
 
 import net.datafaker.Faker;
 import org.testng.annotations.AfterClass;
@@ -45,6 +45,6 @@ public class CacheServiceImplTest {
 
     @AfterClass
     public void showStatistics() {
-        cacheService.getStatistics();
+        cacheService.logStatistics();
     }
 }

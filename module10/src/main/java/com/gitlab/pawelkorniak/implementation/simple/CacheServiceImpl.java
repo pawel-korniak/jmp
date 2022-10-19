@@ -1,4 +1,4 @@
-package com.gitlab.pawelkorniak.SimpleImpl;
+package com.gitlab.pawelkorniak.implementation.simple;
 
 import com.gitlab.pawelkorniak.service.CacheService;
 
@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class CacheServiceImpl implements CacheService<String,String> {
 
-    static final int MAX_SIZE = 100000;
+    static final int MAX_SIZE = 100_000;
 
     Logger logger = Logger.getLogger(CacheServiceImpl.class.getName());
     Map<String,String> cacheEntries = new HashMap<>();
@@ -41,12 +41,12 @@ public class CacheServiceImpl implements CacheService<String,String> {
             cacheEntries.put(object, object);
             entriesCounters.put(object, 0);
         }
-        totalTimeMs += (LocalTime.now().toNanoOfDay() - start);
+        totalTimeMs += LocalTime.now().toNanoOfDay() - start;
         totalPuts++;
     }
 
     @Override
-    public void getStatistics() {
+    public void logStatistics() {
         logger.info("Statistics:\nTotal evictions: " + totalCacheEvictions +
                 "\nAverage time spent for putting values: " + (totalTimeMs/totalPuts) +
                 " nanoseconds"

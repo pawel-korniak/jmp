@@ -1,4 +1,4 @@
-package com.gitlab.pawelkorniak.GuavaImpl;
+package com.gitlab.pawelkorniak.implementation.guava;
 
 import com.google.common.cache.*;
 import com.gitlab.pawelkorniak.service.CacheService;
@@ -6,6 +6,7 @@ import com.gitlab.pawelkorniak.service.CacheService;
 import java.time.LocalTime;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -13,7 +14,7 @@ import java.util.logging.Logger;
 
 public class CacheServiceGuava implements CacheService<String, String> {
 
-    public static final int MAXIMUM_SIZE = 100000;
+    public static final int MAXIMUM_SIZE = 100_000;
     public static final int EXPIRATION_TIME = 5;
 
     Map<String, Long> timeStampsMap = new HashMap<>();
@@ -22,7 +23,7 @@ public class CacheServiceGuava implements CacheService<String, String> {
     CacheLoader<String, String> loader = new CacheLoader<>() {
         @Override
         public String load(String key) {
-            return new String(key.toUpperCase());
+            return key.toUpperCase(Locale.US);
         }
     };
     RemovalListener<String, String> listener = new RemovalListener<>() {
@@ -62,7 +63,7 @@ public class CacheServiceGuava implements CacheService<String, String> {
         }
         cache.put(object, object);
         totalPuts++;
-        totalTimeMs += (LocalTime.now().toNanoOfDay() - start);
+        totalTimeMs += LocalTime.now().toNanoOfDay() - start;
 
     }
 
@@ -77,7 +78,7 @@ public class CacheServiceGuava implements CacheService<String, String> {
     }
 
     @Override
-    public void getStatistics() {
+    public void logStatistics() {
         logger.info("Statistics:\nTotal evictions: " + totalCacheEvictions +
                 "\nAverage time spent for putting values: " + (totalTimeMs / totalPuts) +
                 " nanoseconds"
