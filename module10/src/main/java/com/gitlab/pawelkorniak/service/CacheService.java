@@ -2,9 +2,9 @@ package com.gitlab.pawelkorniak.service;
 
 import java.util.concurrent.ExecutionException;
 
-public interface CacheService {
+public interface CacheService<K,V> {
 
-    CacheObject get(String key) throws ExecutionException;
-    void put(CacheObject object);
+    V get(K key) throws ExecutionException;
+    void put(V object);
     void getStatistics();
 }

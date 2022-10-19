@@ -17,7 +17,7 @@ public class CacheServiceImplTest {
     public void setUp() {
         for (int i = 0; i < cacheService.MAX_SIZE; i++) {
             String key = faker.name().fullName() + i;
-            cacheService.put(new CacheObjectImpl(key));
+            cacheService.put((key));
         }
     }
 
@@ -26,7 +26,7 @@ public class CacheServiceImplTest {
     @Test
     public void shouldNotexceedMaxSize() {
         int maxSize = cacheService.cacheEntries.size();
-        cacheService.put(new CacheObjectImpl(faker.name().fullName()));
+        cacheService.put((faker.name().fullName()));
         int maxSizeAfterPut = cacheService.cacheEntries.size();
         assertTrue(maxSize == maxSizeAfterPut, "Max size error");
 
@@ -35,11 +35,11 @@ public class CacheServiceImplTest {
     @Test
     public void shouldApplyStartegy() {
         String fullName = faker.name().fullName();
-        cacheService.put(new CacheObjectImpl(fullName));
+        cacheService.put((fullName));
         cacheService.cacheEntries.forEach((k, v) -> {
             if (!Objects.equals(k, fullName)) cacheService.get(k);// make entry for each objects except fullName
         });
-        cacheService.put(new CacheObjectImpl(faker.name().fullName()));
+        cacheService.put((faker.name().fullName()));
         assertNull(cacheService.get(fullName));
     }
 

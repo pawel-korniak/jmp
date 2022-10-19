@@ -1,7 +1,6 @@
 package com.gitlab.pawelkorniak.GuavaImpl;
 
 import net.datafaker.Faker;
-import com.gitlab.pawelkorniak.SimpleImpl.CacheObjectImpl;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
@@ -13,13 +12,13 @@ public class CacheServiceGuavaTest {
 
     @Test
     public void shouldPutObject(){
-        cacheService.put(new CacheObjectImpl(faker.name().fullName()));
+        cacheService.put((faker.name().fullName()));
         assertTrue(cacheService.cache.size() == 1);
     }
 
     @Test
     public void shouldEraseAllAfter5Seconds() throws InterruptedException {
-        cacheService.put(new CacheObjectImpl(faker.name().fullName()));
+        cacheService.put((faker.name().fullName()));
         Thread.sleep(6000);
         cacheService.cache.cleanUp();
         assertTrue(cacheService.cache.size() == 0);

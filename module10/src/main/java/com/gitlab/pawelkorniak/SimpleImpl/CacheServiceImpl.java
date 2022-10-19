@@ -1,6 +1,5 @@
 package com.gitlab.pawelkorniak.SimpleImpl;
 
-import com.gitlab.pawelkorniak.service.CacheObject;
 import com.gitlab.pawelkorniak.service.CacheService;
 
 import java.time.LocalTime;
@@ -9,12 +8,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class CacheServiceImpl implements CacheService {
+public class CacheServiceImpl implements CacheService<String,String> {
 
     static final int MAX_SIZE = 100000;
 
     Logger logger = Logger.getLogger(CacheServiceImpl.class.getName());
-    Map<String,CacheObject> cacheEntries = new HashMap<>();
+    Map<String,String> cacheEntries = new HashMap<>();
     Map<String,Integer> entriesCounters = new HashMap<>();
 
     private long totalCacheEvictions;
@@ -22,9 +21,9 @@ public class CacheServiceImpl implements CacheService {
     private long totalPuts;
 
     @Override
-    public CacheObject get(String key) {
+    public String get(String key) {
 
-        CacheObject cacheObject = cacheEntries.get(key);
+        String cacheObject = cacheEntries.get(key);
         if (cacheObject != null){
             entriesCounters.put(key,entriesCounters.get(key) + 1);
         }
@@ -33,14 +32,14 @@ public class CacheServiceImpl implements CacheService {
     }
 
     @Override
-    public void put(CacheObject object) {
+    public void put(String object) {
         var start = LocalTime.now().toNanoOfDay();
         if (cacheEntries.size() >= MAX_SIZE){
             applyStrategy();
         }
-        if (!cacheEntries.containsKey(object.getKey())){
-            cacheEntries.put(object.getKey(), object);
-            entriesCounters.put(object.getKey(), 0);
+        if (!cacheEntries.containsKey(object)){
+            cacheEntries.put(object, object);
+            entriesCounters.put(object, 0);
         }
         totalTimeMs += (LocalTime.now().toNanoOfDay() - start);
         totalPuts++;
