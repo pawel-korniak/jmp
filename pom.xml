@@ -97,7 +97,7 @@
                                         <limit>
                                             <counter>LINE</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.30</minimum>
+                                            <minimum>0.50</minimum>
                                         </limit>
                                         <limit>
                                             <counter>INSTRUCTION</counter>
@@ -117,7 +117,7 @@
                                         <limit>
                                             <counter>BRANCH</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.30</minimum>
+                                            <minimum>0.50</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
@@ -145,7 +145,7 @@
                 </dependencies>
                 <configuration>
                     <targetJdk>17</targetJdk>
-                    <failOnViolation>false</failOnViolation>
+                    <failOnViolation>true</failOnViolation>
 <!--                    <includeTests>true</includeTests>-->
                     <includeTests>false</includeTests>
                     <excludeRoots>
@@ -187,7 +187,7 @@
                 </dependencies>
                 <configuration>
                     <skip>false</skip>
-                    <failsOnError>false</failsOnError>
+                    <failsOnError>true</failsOnError>
                     <configLocation>/devtools/google_checks.xml</configLocation>
                     <consoleOutput>true</consoleOutput>
                     <violationSeverity>error</violationSeverity>
