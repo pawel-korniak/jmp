@@ -17,7 +17,7 @@ public class EventService {
         return events.get(eventId);
     }
 
-    //TODO pagination
+
     public List<Event> getEventsByTitle(String title, int pageSize, int pageNum){
         return events.entrySet().stream()
                 .map(entry -> entry.getValue())

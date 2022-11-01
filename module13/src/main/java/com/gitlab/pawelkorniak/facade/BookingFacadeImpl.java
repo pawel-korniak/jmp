@@ -84,16 +84,18 @@ public class BookingFacadeImpl implements BookingFacade{
         return ticketService.bookTicket(userId,eventId,place,category);
     }
 
+    //TODO pagination
     @Override
     public List<Ticket> getBookedTickets(User user, int pageSize, int pageNum) {
-        return ticketService.getBookedTickets(user,pageSize,pageNum).stream()
+        return ticketService.getBookedTickets(user).stream()
                 .sorted((ticket1, ticket2) -> extractDateFromTicket(ticket1).compareTo(extractDateFromTicket(ticket2)))
                 .collect(Collectors.toList());
     }
 
+    //TODO pagination
     @Override
     public List<Ticket> getBookedTickets(Event event, int pageSize, int pageNum) {
-        return ticketService.getBookedTickets(event,pageSize,pageNum).stream()
+        return ticketService.getBookedTickets(event).stream()
                 .sorted((ticket1, ticket2) -> extractUserFromTicket(ticket2).compareTo(extractUserFromTicket(ticket1)))
                 .collect(Collectors.toList());
     }

@@ -27,7 +27,7 @@ public class UserService {
                 .get();
     }
 
-    //TODO pagination
+
     public List<User> getUsersByName(String name, int pageSize, int pageNum){
         return users.entrySet().stream()
                 .map(entry -> entry.getValue())

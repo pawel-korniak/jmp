@@ -5,7 +5,6 @@ import com.gitlab.pawelkorniak.model.Event;
 import com.gitlab.pawelkorniak.model.Ticket;
 import com.gitlab.pawelkorniak.model.User;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,14 +21,14 @@ public class TicketService {
         return newTicket;
     }
 
-    public List<Ticket> getBookedTickets(User user, int pageSize, int pageNum){
+    public List<Ticket> getBookedTickets(User user){
         return tickets.entrySet().stream()
                 .map(entry -> entry.getValue())
                 .filter(ticket -> ticket.getUserId() == user.getId())
                 .collect(Collectors.toList());
     }
 
-    public List<Ticket> getBookedTickets(Event event, int pageSize, int pageNum){
+    public List<Ticket> getBookedTickets(Event event){
         return tickets.entrySet().stream()
                 .map(entry -> entry.getValue())
                 .filter(ticket -> ticket.getEventId() == event.getId())
