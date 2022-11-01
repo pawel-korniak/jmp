@@ -13,12 +13,12 @@ public class EventService {
     private static long nextId;
     Map<Long, Event> events = new HashMap<>();
 
-    Event getEventById(long eventId) {
+    public Event getEventById(long eventId) {
         return events.get(eventId);
     }
 
     //TODO pagination
-    List<Event> getEventsByTitle(String title, int pageSize, int pageNum){
+    public List<Event> getEventsByTitle(String title, int pageSize, int pageNum){
         return events.entrySet().stream()
                 .map(entry -> entry.getValue())
                 .filter(event -> event.getTitle().contains(title))
@@ -26,14 +26,14 @@ public class EventService {
     }
 
 
-    List<Event> getEventsForDay(Date day, int pageSize, int pageNum){
+    public List<Event> getEventsForDay(Date day, int pageSize, int pageNum){
         return events.entrySet().stream()
                 .map(entry -> entry.getValue())
                 .filter(event -> event.getDate().equals(day))
                 .collect(Collectors.toList());
     }
 
-    Event createEvent(Event event){
+    public Event createEvent(Event event){
         Event newEvent = new EventDAO(nextId,event);
         events.put(newEvent.getId(), event);
         nextId++;
@@ -41,12 +41,13 @@ public class EventService {
     }
 
     //TODO empty id proof
-    Event updateEvent(Event event){
+    public Event updateEvent(Event event){
         events.put(event.getId(),event);
         return event;
     }
 
-    boolean deleteEvent(long eventId){
+
+   public boolean deleteEvent(long eventId){
         return events.remove(eventId) != null;
     }
 }
