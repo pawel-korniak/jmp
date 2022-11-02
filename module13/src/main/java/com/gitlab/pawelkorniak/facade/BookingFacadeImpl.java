@@ -6,17 +6,24 @@ import com.gitlab.pawelkorniak.model.User;
 import com.gitlab.pawelkorniak.service.EventService;
 import com.gitlab.pawelkorniak.service.TicketService;
 import com.gitlab.pawelkorniak.service.UserService;
+import org.springframework.stereotype.Component;
 
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class BookingFacadeImpl implements BookingFacade{
 
-    EventService eventService = new EventService();
-    TicketService ticketService = new TicketService();
-    UserService userService =new UserService();
+    private final EventService eventService;
+    private final TicketService ticketService;
+    private final UserService userService;
+
+    public BookingFacadeImpl(EventService eventService, TicketService ticketService, UserService userService) {
+        this.eventService = eventService;
+        this.ticketService = ticketService;
+        this.userService = userService;
+    }
 
 
     @Override

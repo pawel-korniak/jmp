@@ -4,12 +4,14 @@ import com.gitlab.pawelkorniak.dao.TicketDAO;
 import com.gitlab.pawelkorniak.model.Event;
 import com.gitlab.pawelkorniak.model.Ticket;
 import com.gitlab.pawelkorniak.model.User;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Component
 public class TicketService {
 
     private static long nextId;

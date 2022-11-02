@@ -2,6 +2,8 @@ package com.gitlab.pawelkorniak.service;
 
 import com.gitlab.pawelkorniak.dao.EventDAO;
 import com.gitlab.pawelkorniak.model.Event;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -9,9 +11,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Component
 public class EventService {
     private static long nextId;
-    Map<Long, Event> events = new HashMap<>();
+
+    @Autowired
+    Map<Long, Event> events;
 
     public Event getEventById(long eventId) {
         return events.get(eventId);
