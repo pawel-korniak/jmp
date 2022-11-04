@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-@Component
 public class EventService {
     private static long nextId;
     private static final String prefix = "event:";

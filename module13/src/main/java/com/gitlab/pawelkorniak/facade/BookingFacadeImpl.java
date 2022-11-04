@@ -12,7 +12,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
 public class BookingFacadeImpl implements BookingFacade{
 
     private final EventService eventService;

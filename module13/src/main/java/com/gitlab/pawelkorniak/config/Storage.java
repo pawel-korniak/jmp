@@ -1,14 +1,16 @@
 package com.gitlab.pawelkorniak.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
 public class Storage {
 
-    @Autowired
-    private Map<String, String> storage;
+
+    private Map<String, String> storage = new HashMap<>();
 
     public String get(String id) {
         return storage.get(id);

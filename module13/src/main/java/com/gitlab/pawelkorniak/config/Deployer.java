@@ -3,6 +3,7 @@ package com.gitlab.pawelkorniak.config;
 
 import com.gitlab.pawelkorniak.facade.BookingFacade;
 import com.gitlab.pawelkorniak.service.EventService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
