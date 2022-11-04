@@ -1,29 +1,45 @@
 package com.gitlab.pawelkorniak.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gitlab.pawelkorniak.config.Storage;
 import com.gitlab.pawelkorniak.dao.UserDAO;
 import com.gitlab.pawelkorniak.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
 public class UserService {
 
     private static long nextId;
-    Map<Long, User> users = new HashMap<>();
+    private static final String prefix = "user:";
+    ObjectMapper objectMapper = new ObjectMapper();
+
+    @Autowired
+    Storage users;
 
 
     public User getUserById(long userId){
-        return users.get(userId);
+        try {
+            return objectMapper.readValue(users.get(prefix + userId),User.class);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     //TODO nullProof
     public User getUserByEmail(String email){
-        return users.entrySet().stream()
-                .map(entry -> entry.getValue())
+        return users.query(prefix)
+                .map(value -> {
+                    try {
+                        return objectMapper.readValue(value, User.class);
+                    } catch (JsonProcessingException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
                 .filter(user -> user.getEmail().equals(email))
                 .findFirst()
                 .get();
@@ -31,26 +47,35 @@ public class UserService {
 
 
     public List<User> getUsersByName(String name, int pageSize, int pageNum){
-        return users.entrySet().stream()
-                .map(entry -> entry.getValue())
+        return users.query(prefix)
+                .map(value -> {
+                    try {
+                        return objectMapper.readValue(value,User.class);
+                    } catch (JsonProcessingException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
                 .filter(user -> user.getName().contains(name))
                 .collect(Collectors.toList());
     }
 
     public User createUser(User user){
         User newUser = new UserDAO(nextId,user);
-        users.put(nextId,newUser);
+        try {
+            users.put(prefix + nextId, objectMapper.writeValueAsString(newUser));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         nextId++;
         return newUser;
     }
 
     public User updateUser(User user){
-        users.put(user.getId(), user);
-        return user;
+        return createUser(user);
     }
 
     public boolean deleteUser(long userId){
-        return users.remove(userId) != null;
+        return users.remove(prefix + userId);
     }
 
 }

@@ -1,9 +1,7 @@
 package com.gitlab.pawelkorniak.config;
 
+import com.gitlab.pawelkorniak.facade.BookingFacade;
 import com.gitlab.pawelkorniak.facade.BookingFacadeImpl;
-import com.gitlab.pawelkorniak.model.Event;
-import com.gitlab.pawelkorniak.model.Ticket;
-import com.gitlab.pawelkorniak.model.User;
 import com.gitlab.pawelkorniak.service.EventService;
 import com.gitlab.pawelkorniak.service.TicketService;
 import com.gitlab.pawelkorniak.service.UserService;
@@ -18,19 +16,9 @@ public class Configuration {
 
     @Value("memoryStorage")
     boolean isMemoryStorageSet;
-    @Bean
-    public Map<Long, Event> eventStorage(){
-
-        return isMemoryStorageSet ? new HashMap<>() : null;
-    }
 
     @Bean
-    public Map<Long, Ticket> ticketStorage(){
-        return isMemoryStorageSet ? new HashMap<>() : null;
-    }
-
-    @Bean
-    public Map<Long, User> userStorage(){
+    public Map<String, String> storage(){
         return isMemoryStorageSet ? new HashMap<>() : null;
     }
 
@@ -50,7 +38,7 @@ public class Configuration {
     }
 
     @Bean
-    public BookingFacadeImpl facade(){
+    public BookingFacade facade(){
         return new BookingFacadeImpl(eventService(),ticketService(),userService());
     }
 

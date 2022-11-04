@@ -2,7 +2,6 @@ package com.gitlab.pawelkorniak.facade;
 
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
 
 public class BookingFacadeImplTest {
 
