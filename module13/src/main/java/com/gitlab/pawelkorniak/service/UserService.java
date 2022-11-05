@@ -3,10 +3,9 @@ package com.gitlab.pawelkorniak.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gitlab.pawelkorniak.config.Storage;
-import com.gitlab.pawelkorniak.dao.UserDAO;
+import com.gitlab.pawelkorniak.dao.entity.UserEntity;
 import com.gitlab.pawelkorniak.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -59,7 +58,7 @@ public class UserService {
     }
 
     public User createUser(User user){
-        User newUser = new UserDAO(nextId,user);
+        User newUser = new UserEntity(nextId,user);
         try {
             users.put(prefix + nextId, objectMapper.writeValueAsString(newUser));
         } catch (JsonProcessingException e) {

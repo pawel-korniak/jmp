@@ -1,8 +1,8 @@
-package com.gitlab.pawelkorniak.dao;
+package com.gitlab.pawelkorniak.dao.entity;
 
 import com.gitlab.pawelkorniak.model.Ticket;
 
-public class TicketDAO implements Ticket {
+public class TicketEntity implements Ticket {
 
     private long id;
     private int place;
@@ -10,7 +10,7 @@ public class TicketDAO implements Ticket {
     private long eventId;
     private long userId;
 
-    public TicketDAO(long userId, long eventId, int place, Category category) {
+    public TicketEntity(long userId, long eventId, int place, Category category) {
 
         this.userId = userId;
         this.eventId = eventId;

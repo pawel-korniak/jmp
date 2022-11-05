@@ -1,14 +1,14 @@
-package com.gitlab.pawelkorniak.dao;
+package com.gitlab.pawelkorniak.dao.entity;
 
 import com.gitlab.pawelkorniak.model.User;
 
-public class UserDAO implements User {
+public class UserEntity implements User {
 
     private long id;
     private String name;
     private String email;
 
-    public UserDAO(long id, User user) {
+    public UserEntity(long id, User user) {
         this.id = id;
         this.name = user.getName();
         this.email = user.getEmail();

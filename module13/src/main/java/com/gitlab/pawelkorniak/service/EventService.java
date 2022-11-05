@@ -3,10 +3,10 @@ package com.gitlab.pawelkorniak.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gitlab.pawelkorniak.config.Storage;
-import com.gitlab.pawelkorniak.dao.EventDAO;
+import com.gitlab.pawelkorniak.dao.entity.EventEntity;
+import com.gitlab.pawelkorniak.dao.repository.EventDAO;
 import com.gitlab.pawelkorniak.model.Event;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
@@ -20,6 +20,9 @@ public class EventService {
 
     @Autowired
     Storage events;
+
+    @Autowired
+    private EventDAO eventDAO;
 
     Logger logger = Logger.getLogger(EventService.class.getName());
 
@@ -60,7 +63,7 @@ public class EventService {
     }
 
     public Event createEvent(Event event){
-        Event newEvent = new EventDAO(nextId,event);
+        Event newEvent = new EventEntity(nextId,event);
         try {
             events.put(prefix + newEvent.getId(), objectMapper.writeValueAsString(event));
         } catch (JsonProcessingException e) {

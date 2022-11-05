@@ -3,12 +3,11 @@ package com.gitlab.pawelkorniak.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gitlab.pawelkorniak.config.Storage;
-import com.gitlab.pawelkorniak.dao.TicketDAO;
+import com.gitlab.pawelkorniak.dao.entity.TicketEntity;
 import com.gitlab.pawelkorniak.model.Event;
 import com.gitlab.pawelkorniak.model.Ticket;
 import com.gitlab.pawelkorniak.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -25,7 +24,7 @@ public class TicketService {
     Logger logger = Logger.getLogger(TicketService.class.getName());
 
     public Ticket bookTicket(long userId, long eventId, int place, Ticket.Category category){
-        Ticket newTicket = new TicketDAO(userId, eventId, place, category);
+        Ticket newTicket = new TicketEntity(userId, eventId, place, category);
         try {
             tickets.put(prefix + nextId, objectMapper.writeValueAsString(newTicket));
             logger.info("Ticket Created: " + newTicket);

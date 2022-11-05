@@ -1,16 +1,20 @@
-package com.gitlab.pawelkorniak.dao;
+package com.gitlab.pawelkorniak.dao.entity;
 
 import com.gitlab.pawelkorniak.model.Event;
 
 import java.util.Date;
+import java.util.Random;
 
-public class EventDAO implements Event {
+public class EventEntity implements Event {
 
     private long id;
     private String title;
     private Date date;
 
-    public EventDAO(long id, Event event) {
+    public EventEntity() {
+    }
+
+    public EventEntity(long id, Event event) {
         this.id = id;
         this.date = event.getDate();
         this.title = event.getTitle();
