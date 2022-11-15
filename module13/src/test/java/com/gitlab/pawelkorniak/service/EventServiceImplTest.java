@@ -4,7 +4,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
 
 import com.gitlab.pawelkorniak.dao.entity.EventEntity;
-import com.gitlab.pawelkorniak.dao.repository.EventDAO;
+import com.gitlab.pawelkorniak.dao.EventDAO;
 import com.gitlab.pawelkorniak.dao.repository.EventRepository;
 import com.gitlab.pawelkorniak.model.Event;
 import java.util.Date;

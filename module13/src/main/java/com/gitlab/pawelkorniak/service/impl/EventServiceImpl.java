@@ -1,8 +1,9 @@
-package com.gitlab.pawelkorniak.service;
+package com.gitlab.pawelkorniak.service.impl;
 
 import com.gitlab.pawelkorniak.dao.entity.EventEntity;
-import com.gitlab.pawelkorniak.dao.repository.EventDAO;
+import com.gitlab.pawelkorniak.dao.EventDAO;
 import com.gitlab.pawelkorniak.model.Event;
+import com.gitlab.pawelkorniak.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public class EventServiceImpl implements EventService{
+public class EventServiceImpl implements EventService {
     @Autowired
     private EventDAO events;
 

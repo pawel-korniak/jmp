@@ -4,6 +4,9 @@ import com.gitlab.pawelkorniak.facade.BookingFacade;
 import com.gitlab.pawelkorniak.facade.BookingFacadeImpl;
 import com.gitlab.pawelkorniak.service.*;
 
+import com.gitlab.pawelkorniak.service.impl.EventServiceImpl;
+import com.gitlab.pawelkorniak.service.impl.TicketServiceImpl;
+import com.gitlab.pawelkorniak.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;

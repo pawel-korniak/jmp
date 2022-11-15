@@ -1,15 +1,10 @@
 package com.gitlab.pawelkorniak.service;
 
-import com.gitlab.pawelkorniak.dao.entity.EventEntity;
 import com.gitlab.pawelkorniak.dao.entity.UserEntity;
-import com.gitlab.pawelkorniak.dao.repository.EventRepository;
-import com.gitlab.pawelkorniak.dao.repository.UserDAO;
+import com.gitlab.pawelkorniak.dao.UserDAO;
 import com.gitlab.pawelkorniak.dao.repository.UserRepository;
-import com.gitlab.pawelkorniak.model.Event;
 import com.gitlab.pawelkorniak.model.User;
 import org.testng.annotations.Test;
-
-import java.util.Date;
 
 import static org.testng.Assert.*;
 

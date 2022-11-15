@@ -1,11 +1,9 @@
 package com.gitlab.pawelkorniak.service;
 
 import com.gitlab.pawelkorniak.dao.entity.TicketEntity;
-import com.gitlab.pawelkorniak.dao.entity.UserEntity;
-import com.gitlab.pawelkorniak.dao.repository.TicketDAO;
+import com.gitlab.pawelkorniak.dao.TicketDAO;
 import com.gitlab.pawelkorniak.dao.repository.TicketRepository;
 import com.gitlab.pawelkorniak.model.Ticket;
-import com.gitlab.pawelkorniak.model.User;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;

@@ -1,12 +1,13 @@
 package com.gitlab.pawelkorniak.dao.repository;
 
+import com.gitlab.pawelkorniak.dao.EventDAO;
 import com.gitlab.pawelkorniak.dao.GenericInMemoryRepository;
 import com.gitlab.pawelkorniak.model.Event;
 import java.util.Random;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EventRepository extends GenericInMemoryRepository<Event, Long> implements EventDAO{
+public class EventRepository extends GenericInMemoryRepository<Event, Long> implements EventDAO {
 
     @Override
     protected Long generatePK() {

@@ -1,10 +1,13 @@
-package com.gitlab.pawelkorniak.service;
+package com.gitlab.pawelkorniak.service.impl;
 
 import com.gitlab.pawelkorniak.dao.entity.TicketEntity;
-import com.gitlab.pawelkorniak.dao.repository.TicketDAO;
+import com.gitlab.pawelkorniak.dao.TicketDAO;
 import com.gitlab.pawelkorniak.model.Event;
 import com.gitlab.pawelkorniak.model.Ticket;
 import com.gitlab.pawelkorniak.model.User;
+import com.gitlab.pawelkorniak.service.EventService;
+import com.gitlab.pawelkorniak.service.TicketService;
+import com.gitlab.pawelkorniak.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
@@ -12,7 +15,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public class TicketServiceImpl implements TicketService{
+public class TicketServiceImpl implements TicketService {
     @Autowired
     private TicketDAO tickets;
     @Autowired

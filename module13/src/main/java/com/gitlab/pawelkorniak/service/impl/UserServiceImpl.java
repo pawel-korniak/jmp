@@ -1,8 +1,9 @@
-package com.gitlab.pawelkorniak.service;
+package com.gitlab.pawelkorniak.service.impl;
 
 import com.gitlab.pawelkorniak.dao.entity.UserEntity;
-import com.gitlab.pawelkorniak.dao.repository.UserDAO;
+import com.gitlab.pawelkorniak.dao.UserDAO;
 import com.gitlab.pawelkorniak.model.User;
+import com.gitlab.pawelkorniak.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

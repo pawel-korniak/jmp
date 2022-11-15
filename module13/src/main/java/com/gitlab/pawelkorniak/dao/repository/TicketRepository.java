@@ -1,14 +1,14 @@
 package com.gitlab.pawelkorniak.dao.repository;
 
 import com.gitlab.pawelkorniak.dao.GenericInMemoryRepository;
-import com.gitlab.pawelkorniak.model.Event;
+import com.gitlab.pawelkorniak.dao.TicketDAO;
 import com.gitlab.pawelkorniak.model.Ticket;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
 @Component
-public class TicketRepository extends GenericInMemoryRepository<Ticket, Long> implements TicketDAO{
+public class TicketRepository extends GenericInMemoryRepository<Ticket, Long> implements TicketDAO {
 
     @Override
     protected Long generatePK() {
