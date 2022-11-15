@@ -18,6 +18,14 @@ public class TicketEntity implements Ticket {
         this.category = category;
     }
 
+    public TicketEntity(long ticketId) {
+        this.id = ticketId;
+    }
+
+    public TicketEntity() {
+
+    }
+
     @Override
     public long getId() {
         return id;

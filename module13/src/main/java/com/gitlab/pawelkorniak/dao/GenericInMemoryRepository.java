@@ -2,6 +2,7 @@ package com.gitlab.pawelkorniak.dao;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public abstract class GenericInMemoryRepository<T, PK extends Serializable> implements GenericDAO<T, PK> {
@@ -35,5 +36,10 @@ public abstract class GenericInMemoryRepository<T, PK extends Serializable> impl
     @Override
     public void delete(T persistentObject) {
         storage.remove(getPk(persistentObject));
+    }
+
+    @Override
+    public List<T> readAll(){
+        return storage.values().stream().toList();
     }
 }

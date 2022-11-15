@@ -20,6 +20,10 @@ public class EventEntity implements Event {
         this.title = event.getTitle();
     }
 
+    public EventEntity(long eventId) {
+        this.id = eventId;
+    }
+
     @Override
     public long getId() {
         return id;

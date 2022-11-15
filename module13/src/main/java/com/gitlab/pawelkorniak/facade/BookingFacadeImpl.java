@@ -3,10 +3,7 @@ package com.gitlab.pawelkorniak.facade;
 import com.gitlab.pawelkorniak.model.Event;
 import com.gitlab.pawelkorniak.model.Ticket;
 import com.gitlab.pawelkorniak.model.User;
-import com.gitlab.pawelkorniak.service.EventService;
-import com.gitlab.pawelkorniak.service.TicketService;
-import com.gitlab.pawelkorniak.service.UserService;
-import org.springframework.stereotype.Component;
+import com.gitlab.pawelkorniak.service.*;
 
 import java.util.Date;
 import java.util.List;
@@ -14,8 +11,8 @@ import java.util.stream.Collectors;
 
 public class BookingFacadeImpl implements BookingFacade{
 
-    private final EventService eventService;
     private final TicketService ticketService;
+    private final EventService eventService;
     private final UserService userService;
 
     public BookingFacadeImpl(EventService eventService, TicketService ticketService, UserService userService) {
@@ -90,20 +87,14 @@ public class BookingFacadeImpl implements BookingFacade{
         return ticketService.bookTicket(userId,eventId,place,category);
     }
 
-    //TODO pagination
     @Override
     public List<Ticket> getBookedTickets(User user, int pageSize, int pageNum) {
-        return ticketService.getBookedTickets(user).stream()
-                .sorted((ticket1, ticket2) -> extractDateFromTicket(ticket1).compareTo(extractDateFromTicket(ticket2)))
-                .collect(Collectors.toList());
+        return ticketService.getBookedTickets(user);
     }
 
-    //TODO pagination
     @Override
     public List<Ticket> getBookedTickets(Event event, int pageSize, int pageNum) {
-        return ticketService.getBookedTickets(event).stream()
-                .sorted((ticket1, ticket2) -> extractUserFromTicket(ticket2).compareTo(extractUserFromTicket(ticket1)))
-                .collect(Collectors.toList());
+        return ticketService.getBookedTickets(event);
     }
 
     @Override
@@ -111,10 +102,5 @@ public class BookingFacadeImpl implements BookingFacade{
         return false;
     }
 
-    private String extractUserFromTicket(Ticket ticket) {
-        return userService.getUserById(ticket.getEventId()).getName();
-    }
-    private Date extractDateFromTicket(Ticket ticket) {
-        return eventService.getEventById(ticket.getEventId()).getDate();
-    }
+
 }

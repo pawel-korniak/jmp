@@ -1,6 +1,7 @@
 package com.gitlab.pawelkorniak.dao;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Plz google do not repeat DAO or anything like this
@@ -22,5 +23,7 @@ public interface GenericDAO<T, PK extends Serializable> {
 
     /** Remove an object from persistent storage in the database */
     void delete(T persistentObject);
+
+    List<T> readAll();
 
 }

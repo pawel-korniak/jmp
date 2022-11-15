@@ -8,10 +8,18 @@ public class UserEntity implements User {
     private String name;
     private String email;
 
-    public UserEntity(long id, User user) {
+    public UserEntity(User user) {
         this.id = id;
         this.name = user.getName();
         this.email = user.getEmail();
+    }
+
+    public UserEntity(long userId) {
+        this.id = userId;
+    }
+
+    public UserEntity() {
+
     }
 
     @Override

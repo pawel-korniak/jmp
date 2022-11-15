@@ -2,9 +2,7 @@ package com.gitlab.pawelkorniak.config;
 
 import com.gitlab.pawelkorniak.facade.BookingFacade;
 import com.gitlab.pawelkorniak.facade.BookingFacadeImpl;
-import com.gitlab.pawelkorniak.service.EventService;
-import com.gitlab.pawelkorniak.service.TicketService;
-import com.gitlab.pawelkorniak.service.UserService;
+import com.gitlab.pawelkorniak.service.*;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -21,26 +19,18 @@ public class Configuration {
     boolean memoryStorage;
 
     @Bean
-    public Storage storage() {
-        if (memoryStorage){
-            logger.info("Memory storage will be used");
-        }
-        return memoryStorage ? new Storage() : null;
-    }
-
-    @Bean
     public EventService eventService() {
-        return new EventService();
+        return new EventServiceImpl();
     }
 
     @Bean
     public TicketService ticketService() {
-        return new TicketService();
+        return new TicketServiceImpl();
     }
 
     @Bean
     public UserService userService() {
-        return new UserService();
+        return new UserServiceImpl();
     }
 
     @Bean

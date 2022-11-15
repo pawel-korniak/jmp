@@ -10,7 +10,7 @@ import com.gitlab.pawelkorniak.model.Event;
 import java.util.Date;
 import org.testng.annotations.Test;
 
-public class EventServiceTest {
+public class EventServiceImplTest {
 //TODO write meaningful tests
 
     EventDAO eventDAO = new EventRepository();
