@@ -38,7 +38,23 @@ We introduced 3 interfaces with methods corresponding to BookingFacade interface
 Implementation of BookingFacade doesn't contain any business logic, implementations of services has all logic.
 
 ad. 2  
-properties manage usage of in memory storage
+properties manage usage of in memory storage.  
+simply "memoryStorage=true".
 
+ad. 3  
+Plan is to implement namespaces and JSON inserting in mapper above facade implementation
 
+ad. 4  
+storage initialization will be implemented in Deployer, files for deployer will be implemented along with json mapper
+
+ad. 5  
+Done in Configuration.class
+
+ad. 6  
+Services are covered with unit tests
+
+ad. 7
+We will implement logging with Lombok
+
+ad. 8  
 
