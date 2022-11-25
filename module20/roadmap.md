@@ -1,3 +1,5 @@
+# Module JDBC
+
 ### 1. Task 1
 Description
 Please, complete the following task.
@@ -13,7 +15,7 @@ Program should print out all names (only distinct) of users who has more than 10
 You could prepare dictionaries (maps) in memory (with usernames for example) or data in files to generate data for the populating process.
 
 
-### 2. Task 2
+### ~~2. Task 2~~
 Description
 Please, complete the following task.
 
@@ -29,7 +31,7 @@ It supports the table creation/populating via L concurrent connections (from dif
 All settings are located in a configuration file; the path to this file is a parameter of main() function.
 Discuss with mentor how to improve performance of the suggested solution. 
 
-### 3. Task 3 (Optional)
+### ~~3. Task 3 (Optional)~~
 Description
 Please, complete the following task.
 
@@ -46,7 +48,7 @@ The solution is delivered with a test database (populated with a huge volume of 
 10 GB sample database could be generated via Highload Writing Tool.
 
 
-### 4. Task 4 (Optional)
+### ~~4. Task 4 (Optional)~~
 Description
 Please, complete the following task.
 
@@ -56,6 +58,9 @@ Add five DBUnit tests to appropriate project (pet project) or another. Prepare t
 
 
 ### 5. Task 5
+
+
+
 Description
 Please, complete the following task.
 
@@ -69,6 +74,8 @@ Check that the application works properly, all test are green and so on.
 Compare the performance of two solutions; explain to your mentor the benefits or disadvantages of storage procedure usage for the taken application.
 3-5 tables with CRUD operations and two complex SELECTs can be enough.
 Use MySQL or PostgreSQL or Oracle.
+
+### (what is procedure?)
 
 ### 6. Task 6 (Optional)
 Description
@@ -105,7 +112,9 @@ CallableStatement is used to call DB stored procedures (3 points);
 large binary files are retrievable from DB (5 points).
 Think about pros and cons of stored procedures usage comparing to SQL statement stored in Java code. Describe what difficulties you’ve faced when working with large binary files. Make demo via console interface or via special main method.
 
-### 8. Task 8 (Optional)
+### (do DB holds files by default?)
+
+### ~~8. Task 8 (Optional)~~
 Description
 Please, complete the following task.
 
@@ -122,3 +131,163 @@ Your mini-ORM should have one entry point, which supports CRUD operations for pa
 methods.
 Implement all actions via RowSet if it is possible.
 
+# Module Kafka
+
+### Task description in [pdf](HW.pdf)
+
+# Module Spring testing
+
+### Main task
+Description
+Please, complete the following task.
+
+Turn booking service controllers into REST endpoints, returning domain objects directly intead of ModelAndView objects. (3 points)
+Implement asynchronous ticket booking. Create JMS consumer which will listen to a particular queue, receive booking messages and process them by adding appropriate database records. (3 points)
+Configure Spring JMS infrastructure. (1 point)
+Create integration tests that verify asynchronous booking, mock JMS provider using at least 2 of the approaches shown during last Spring Test lecture. (3 points)
+
+# Module Spring boot
+
+### ~~Task 1~~
+Description
+Please, complete the following task.
+
+1 point.
+
+Using https://start.spring.io create a Spring-boot app.
+Create CommandLineRunner and output 'hello world'.
+Start your application.
+Check that spring context is up and there is 'hello world' message in console.
+
+### ~~Task 2~~
+Description
+Please, complete the following task
+
+1 point.
+
+Create app that should support create, read, update and delete operations for some entity.
+Use Spring Data module.
+Don't use Spring Data REST starter.
+
+### Task 3
+Description
+Please, complete the following task
+
+1 point.
+
+Implement authentication and authorization mechanism.
+OAuth2 should be used.
+JWT Token should be used.
+
+### Task 4 (Optional)
+Description
+Please, complete the following task
+
+1 point.
+
+Should support different environments - local, dev, stg, prod.
+Spring profiles.
+Each environment - different db properties.
+
+### ~~Task 5~~
+Description
+Please, complete the following task
+
+1 point.
+
+Add tool for migrating data.
+Flyway or Liquibase.
+
+### ~~Task 6 (Optional)~~
+Description
+Please, complete the following task
+
+1 point.
+
+Enable actuator.
+Implement a few custom health indicators.
+Implement a few custom metrics using Prometheus.
+
+### Task 7
+Description
+Please, complete the following task
+
+1 point.
+
+In memory db must be used for testing purpose.
+Implement repository testing.
+Implement unit tests.
+Implement tests for RestController using mock mvc.
+Implement integration tests.
+
+# TODO:
+
+# Roadmap of Demonstration
+[toc]
+## Useful links
+* [Jacoco](https://www.jacoco.org/jacoco/)
+* [SonarQube](https://www.sonarqube.org/)
+* [SpotBugs](https://spotbugs.github.io/)
+* [PMD](https://pmd.github.io/)
+* [OWASP](https://www.owasp.org/index.php/OWASP_Dependency_Check)
+## Points at issue:
+- ***why do we use SonarQube unless have a pipeline?***
+  Instead of it we can use Jacoco locally to check  code coverage.
+  SoanrQube can be used as Quality Gate in place.
+- ***How about security checks as dedicated part of quality ?***
+<details><summary>Not free tools</summary>
+https://snyk.io/
+https://www.veracode.com/
+</details>
+## Demo
+### Quality
+* In most cases projects have `Non-Functionals and SLA's` requirements with clear and have specific numbers.
+<details><summary>Code Coverage and Quality Gate recomendations</summary>
+* Code Coverage:
+    **You should decide how much the amount of code and which parts of application should be covered with unit testing.**
+    for example:
+    - business layer > 95%
+    - total coverage > 60%.
+* Quality Gate:
+    **You should decide when and how often it should be run.**
+    Of course it depends on your branch strategy and other conditions
+    for example:
+    - in dev branch before merging to master branch
+    - in master branch before release 
+</details>
+<details><summary>How to run?</summary>
+You can use maven profiles for this purpose - we have created this one `qualityWithoutSnyk`. 
+```
+mvn clean package -PqualityWithoutSnyk -DskipTests
+```
+</details>
+#### [Jacoco](https://www.jacoco.org/jacoco/)
+We use [Jacoco library](https://www.jacoco.org/jacoco/) to check coverage locally. 
+It very fast and convenient way which does not required waiting CI/CD pipeline/s with SonarQube.
+<details><summary>How to run?</summary>
+```
+cd <any-app>
+mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.failure.ignore=false
+```
+</details>
+#### [SonarQube](https://www.sonarqube.org/)
+>Continuous Inspection
+>
+>SonarQube provides the capability to not only show health of an application but also to highlight issues newly introduced. With a Quality Gate in place, you can fix the leak and therefore improve code quality systematically.
+#### [SpotBugs](https://spotbugs.github.io/)
+> SpotBugs is a program which uses static analysis to look for bugs in Java code
+<details><summary>Would like to run spotbugs gui?</summary>
+```
+cd webapp
+mvn spotbugs:gui -PqualityWithoutSnyk
+```
+</details>
+#### [PMD](https://pmd.github.io/)
+> An extensible cross-language static code analyzer
+#### [OWASP](https://www.owasp.org/index.php/OWASP_Dependency_Check)
+> Dependency-Check is a utility that identifies project dependencies and checks if there are any known, publicly disclosed, vulnerabilities
+<details><summary>Where I can see report?</summary>
+```
+<app-folder>\target\dependency-check-report.html
+```
+</details>
