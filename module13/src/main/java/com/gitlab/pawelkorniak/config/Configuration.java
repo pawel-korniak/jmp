@@ -1,5 +1,11 @@
 package com.gitlab.pawelkorniak.config;
 
+import com.gitlab.pawelkorniak.dao.EventDAO;
+import com.gitlab.pawelkorniak.dao.TicketDAO;
+import com.gitlab.pawelkorniak.dao.UserDAO;
+import com.gitlab.pawelkorniak.dao.repository.EventRepository;
+import com.gitlab.pawelkorniak.dao.repository.TicketRepository;
+import com.gitlab.pawelkorniak.dao.repository.UserRepository;
 import com.gitlab.pawelkorniak.facade.BookingFacade;
 import com.gitlab.pawelkorniak.facade.BookingFacadeImpl;
 import com.gitlab.pawelkorniak.service.*;
@@ -20,6 +26,21 @@ public class Configuration {
 
     @Value("${memoryStorage}")
     boolean memoryStorage;
+
+    @Bean
+    public EventDAO eventDAO(){
+        return memoryStorage ? new EventRepository() : null;
+    }
+
+    @Bean
+    public UserDAO userDAO(){
+        return memoryStorage ? new UserRepository() : null;
+    }
+
+    @Bean
+    public TicketDAO ticketDAO(){
+        return memoryStorage ? new TicketRepository() : null;
+    }
 
     @Bean
     public EventService eventService() {

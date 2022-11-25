@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
-@Component
 public class UserRepository extends GenericInMemoryRepository<User, Long> implements UserDAO {
 
     @Override

@@ -11,7 +11,6 @@ import java.util.Date;
 import org.testng.annotations.Test;
 
 public class EventServiceImplTest {
-//TODO write meaningful tests
 
     EventDAO eventDAO = new EventRepository();
 

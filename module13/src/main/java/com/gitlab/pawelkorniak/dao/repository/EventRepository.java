@@ -6,7 +6,6 @@ import com.gitlab.pawelkorniak.model.Event;
 import java.util.Random;
 import org.springframework.stereotype.Component;
 
-@Component
 public class EventRepository extends GenericInMemoryRepository<Event, Long> implements EventDAO {
 
     @Override

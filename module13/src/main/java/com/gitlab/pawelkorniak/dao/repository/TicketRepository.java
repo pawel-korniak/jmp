@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
-@Component
 public class TicketRepository extends GenericInMemoryRepository<Ticket, Long> implements TicketDAO {
 
     @Override
