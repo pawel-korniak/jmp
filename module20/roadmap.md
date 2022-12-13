@@ -224,70 +224,8 @@ Implement integration tests.
 
 # Roadmap of Demonstration
 [toc]
-## Useful links
-* [Jacoco](https://www.jacoco.org/jacoco/)
-* [SonarQube](https://www.sonarqube.org/)
-* [SpotBugs](https://spotbugs.github.io/)
-* [PMD](https://pmd.github.io/)
-* [OWASP](https://www.owasp.org/index.php/OWASP_Dependency_Check)
+
 ## Points at issue:
-- ***why do we use SonarQube unless have a pipeline?***
-  Instead of it we can use Jacoco locally to check  code coverage.
-  SoanrQube can be used as Quality Gate in place.
-- ***How about security checks as dedicated part of quality ?***
-<details><summary>Not free tools</summary>
-https://snyk.io/
-https://www.veracode.com/
-</details>
-## Demo
-### Quality
-* In most cases projects have `Non-Functionals and SLA's` requirements with clear and have specific numbers.
-<details><summary>Code Coverage and Quality Gate recomendations</summary>
-* Code Coverage:
-    **You should decide how much the amount of code and which parts of application should be covered with unit testing.**
-    for example:
-    - business layer > 95%
-    - total coverage > 60%.
-* Quality Gate:
-    **You should decide when and how often it should be run.**
-    Of course it depends on your branch strategy and other conditions
-    for example:
-    - in dev branch before merging to master branch
-    - in master branch before release 
-</details>
-<details><summary>How to run?</summary>
-You can use maven profiles for this purpose - we have created this one `qualityWithoutSnyk`. 
-```
-mvn clean package -PqualityWithoutSnyk -DskipTests
-```
-</details>
-#### [Jacoco](https://www.jacoco.org/jacoco/)
-We use [Jacoco library](https://www.jacoco.org/jacoco/) to check coverage locally. 
-It very fast and convenient way which does not required waiting CI/CD pipeline/s with SonarQube.
-<details><summary>How to run?</summary>
-```
-cd <any-app>
-mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.failure.ignore=false
-```
-</details>
-#### [SonarQube](https://www.sonarqube.org/)
->Continuous Inspection
->
->SonarQube provides the capability to not only show health of an application but also to highlight issues newly introduced. With a Quality Gate in place, you can fix the leak and therefore improve code quality systematically.
-#### [SpotBugs](https://spotbugs.github.io/)
-> SpotBugs is a program which uses static analysis to look for bugs in Java code
-<details><summary>Would like to run spotbugs gui?</summary>
-```
-cd webapp
-mvn spotbugs:gui -PqualityWithoutSnyk
-```
-</details>
-#### [PMD](https://pmd.github.io/)
-> An extensible cross-language static code analyzer
-#### [OWASP](https://www.owasp.org/index.php/OWASP_Dependency_Check)
-> Dependency-Check is a utility that identifies project dependencies and checks if there are any known, publicly disclosed, vulnerabilities
-<details><summary>Where I can see report?</summary>
-```
-<app-folder>\target\dependency-check-report.html
-```
-</details>
+- ***DataFaker is used to fill DB***
+  Instead of input manually 
+## Demo  

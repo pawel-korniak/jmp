@@ -8,9 +8,9 @@ public class User {
     long id;
     String name;
     String surname;
-    String birthdate;
+    Date birthdate;
 
-    public User(long id, String name, String surname, String birthdate) {
+    public User(long id, String name, String surname, Date birthdate) {
 
         this.id = id;
         this.name = name;
