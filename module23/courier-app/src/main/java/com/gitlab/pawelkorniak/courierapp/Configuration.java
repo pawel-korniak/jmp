@@ -1,4 +1,4 @@
-package com.gitlab.pawelkorniak.clientapp;
+package com.gitlab.pawelkorniak.courierapp;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.AdminClientConfig;
@@ -17,7 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
-public class KafkaTopicConfig {
+@org.springframework.context.annotation.Configuration
+public class Configuration {
+
     @Value(value = "${spring.kafka.bootstrap-servers}")
     private String bootstrapAddress;
 
@@ -31,6 +33,11 @@ public class KafkaTopicConfig {
     @Bean
     public NewTopic topic1() {
         return new NewTopic("order", 1, (short) 1);
+    }
+
+    @Bean
+    public NewTopic topic2() {
+        return new NewTopic("notification", 1, (short) 1);
     }
 
     @Bean
@@ -53,12 +60,5 @@ public class KafkaTopicConfig {
         return new KafkaTemplate<>(producerFactory());
     }
 
-    @Bean
-    CommandLineRunner initDatabase(OrderRepository repository) {
 
-        return args -> {
-            log.info("Preloading " + repository.save(new Order("Bilbo Baggins")));
-            log.info("Preloading " + repository.save(new Order("Frodo Baggins")));
-        };
-    }
 }

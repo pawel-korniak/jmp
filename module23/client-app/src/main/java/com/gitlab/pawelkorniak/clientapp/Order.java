@@ -15,6 +15,8 @@ public class Order {
     @GeneratedValue Long id;
     private String content;
 
+    private String status;
+
     Order() {}
 
     Order(String order) {
@@ -38,6 +40,14 @@ public class Order {
         this.content = content;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
 
@@ -56,6 +66,10 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" + "id=" + this.id + ", order='" + this.content + '\'' + '}';
+        return "Order{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 }
