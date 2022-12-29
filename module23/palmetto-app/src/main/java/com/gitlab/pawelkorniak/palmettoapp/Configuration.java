@@ -40,6 +40,10 @@ public class Configuration {
     }
 
     @Bean
+    public NewTopic topic3() {
+        return new NewTopic("notification-client", 1, (short) 1);
+    }
+    @Bean
     public ProducerFactory<String, String> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(

@@ -20,7 +20,7 @@ public class Order {
     Order() {}
 
     Order(String order) {
-
+        this.status = "new";
         this.content = order;
     }
 
