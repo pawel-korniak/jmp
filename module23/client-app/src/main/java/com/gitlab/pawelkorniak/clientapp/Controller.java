@@ -5,9 +5,12 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.tomcat.util.json.JSONParser;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
@@ -41,7 +44,12 @@ public class Controller {
     }
 
     @KafkaListener(topics = "notification-client", groupId = "group1")
-    public void listenGroupFoo(String message) {
-        System.out.println("Received Message in group order: " + message);
+    public void listenGroupFoo(String message) throws JSONException {
+
+        System.out.println("Received Message by Client-app in group order: " + message);
+
+        Gson gson = new Gson();
+        final Order order = gson.fromJson(message, Order.class);
+        System.out.println("Updated ORDER : "+ orderRepository.save(order));
     }
 }

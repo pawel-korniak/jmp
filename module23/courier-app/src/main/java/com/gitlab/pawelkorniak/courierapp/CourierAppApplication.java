@@ -5,18 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CourierAppApplication implements CommandLineRunner {
+public class CourierAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CourierAppApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-//		for (;;) {
-//			Thread.sleep(10000);
-//
-//			System.out.println("sleep");
-//		}
-	}
 }
