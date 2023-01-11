@@ -1,5 +1,6 @@
 package com.github.pawelkorniak;
 import com.github.pawelkorniak.Event;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
