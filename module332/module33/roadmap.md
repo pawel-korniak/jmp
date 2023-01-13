@@ -59,11 +59,15 @@ Note: feel free to use any database (filesystem, any db, in memory storage).
 
 ## Demo
 ### Implementation
-I implemented each of task as separate package instead of modules, had huge problem with sharing spring beans between modules.(Already bought 'Spring in action V') 
+
+I implemented each of task as separate packages instead of modules,
+I had huge problem with sharing spring beans between modules.
+(Already started reading 'Spring in action V') 
 
 ### Quality
 
-Tests needs to be added
+EventServiceImpl tested
+need to add MVC tests
 
 ### Presentation
 
