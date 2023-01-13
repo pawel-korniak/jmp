@@ -59,15 +59,18 @@ Note: feel free to use any database (filesystem, any db, in memory storage).
 
 ## Demo
 ### Implementation
-Most of the implementation is done.
-There are still errors with class loading, and dependencies between modules.
-This is the reason why application doesn't run properly.
+I implemented each of task as separate package instead of modules, had huge problem with sharing spring beans between modules.(Already bought 'Spring in action V') 
 
 ### Quality
 
 Tests needs to be added
 
+### Presentation
+
+perform CRUD operations with swagger
+
 <details><summary>How to run?</summary>
 ```
-run SpringBootApplication class RestApplication
+run SpringBootApplication class Module33Application
+for API documentation visit http://localhost:8080/swagger-ui/
 ```</details>
