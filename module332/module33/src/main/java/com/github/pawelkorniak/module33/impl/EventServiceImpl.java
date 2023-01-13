@@ -3,9 +3,7 @@ package com.github.pawelkorniak.module33.impl;
 
 import com.github.pawelkorniak.module33.api.EventService;
 import com.github.pawelkorniak.module33.dto.Event;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;

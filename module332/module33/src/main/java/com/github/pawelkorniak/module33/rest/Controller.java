@@ -2,7 +2,6 @@ package com.github.pawelkorniak.module33.rest;
 
 import com.github.pawelkorniak.module33.api.EventService;
 import com.github.pawelkorniak.module33.dto.Event;
-import com.github.pawelkorniak.module33.impl.EventServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,17 +13,17 @@ public class Controller {
     @Autowired
     public EventService eventService;
 
-    @GetMapping("/events/{id}")
+    @GetMapping("events/{id}")
     public Event getById(@PathVariable long id){
         return eventService.getEvent(id);
     }
 
-    @GetMapping("events/")
+    @GetMapping("events")
     public List<Event> getAll(){
         return eventService.getAllEvents();
     }
 
-    @PostMapping("/events")
+    @PostMapping("events")
     public void saveEvent(@RequestBody Event event){
         eventService.createEvent(event);
     }
