@@ -1,80 +1,78 @@
 # Roadmap of Demonstration
 [toc]
 ## Useful links
-* [MaturityModel](https://martinfowler.com/articles/richardsonMaturityModel.html)
-* [swagger](https://swagger.io/docs/)
+* [ElasticSearch documentation](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/searching.html)
 * [SpringBoot](https://spring.io/projects/spring-boot)
 ## Points at issue:
-- ***what is Richardson Maturity Model?***
-  A model (developed by Leonard Richardson) that breaks down the principal elements of a REST approach into three steps. These introduce resources, http verbs, and hypermedia controls.
-
-- ***what is Swagger?***
-  Swagger is an open source set of rules, specifications and tools for developing and describing RESTful APIs. The Swagger framework allows developers to create interactive, machine and human-readable API documentation.
+- ***what is ElasticSearch?***
+  Elasticsearch is a distributed search and analytics engine built on Apache Lucene. Since its release in 2010, Elasticsearch has quickly become the most popular search engine and is commonly used for log analytics, full-text search, security intelligence, business analytics, and operational intelligence use cases.
 ## Task Description
 
-1.  Download Java SE Development Kit 8 according to your OS and processor’s architecture.
-
-2. Install Java Development Kit according to JDK installation instructions (see also PATH and CLASSPATH).
-
-3. Download Apache Maven 3.6.0 according to your OS and processor’s architecture.
-
-4. Install Apache Maven according to installation instructions.
-
-5. Create maven project with 4 modules:
-
-event-service-api;
-event-service-dto;
-event-service-impl;
-event-service-rest.
-6. event-service-dto module should contain Event class with following fields:
-
-id;
-title;
-place;
-speaker;
-eventType;
-dateTime.
-7. event-service-api module should contain EventService interface with following methods:
-
-createEvent(…);
-updateEvent(…);
-getEvent(…); * deleteEvent();
-getAllEvents();
-getAllEventsByTitle(…).
-8. event-service-impl module should contain EventServiceImpl which implements EventService interface and responds with list of Events.
-
-Note: feel free to use any database (filesystem, any db, in memory storage).
-
-9. event-service-rest module should contain EventServiceController which provides REST API interface according to 2nd or 3rd level of REST API maturity and responds with list of Events.
-
-10. Document methods in EventServiceController using Swagger 2 annotations.
-
-11. Implement Application class with @SpringBootApplication annotation and main method.
-
-12. Create runnable Spring Boot JAR with dependencies using spring-boot-maven-plugin.
-
-13. Run event-service jar using SpringBoot and Analyse REST API with Swagger UI.
-
-14. Provide sample requests to EventService, demonstrate it’s work using Swagger UI.
+### Task 1 - Indexing (2 Points)
+1. Find collection of the books in English language. It is better to use epub format.
+2. Implement indexing process of these books.
+3. Document should have the following fields: - Id - Title (book title, string) - Authors (collection of strings) - Content - Language
+4. The process of indexing could be described as following: - Read all books from local folder - Use epubreader library (ex. com.positiondev.epublib) for transforming from File to EbubBook object - Then transform EpubBook to Book model which represent Solr document - Save Books to Solr
+5. Implement API endpoint to start indexing process
+6. Using spring data solr implement repository to retrieving solr document by id
+7. Implement API endpoint
+      GET /api/v1/book/{id}
+      
+### Task 2 - Search book by query (2 points)
+- Implement API endpoint with following request:
+      {
+      "field": "string", // field for filtering
+      "value": "string", // value of the field for filtering
+      "facetField": "string", // field for facet
+      "fulltext": true, // is full text search
+      "q": "string" // query for full text search
+      }
+      The response structure is:
+      {
+      "books": [
+      {
+      "id": "string",
+      "authors": [
+      "string"
+      ],
+      "title": "string",
+      "language": "string",
+      "content": "string",
+      }
+      ],
+      "facets": [
+      {
+      "valueCount": 0,
+      "value": "string",
+      "field": {
+      "name": "string"
+      },
+      "key": {
+      "name": "string"
+      }
+      }
+      ],
+      "numFound": 0
+      }
+- Using *org.springframework.data.solr.core.SolrTemplate * implement search request to Solr using parameters from response 
+### Task 3 - Implement autosuggestions (1 Point)
+- Implement API endpoint which is returning array of suggestions:
+       GET api/v1/book/suggest?query=
+- Create suggest field in scheme using org.springframework.data.solr.core.SolrTemplate which is filled from Book.title & Book.authors
+- Add required searchComponent and requestHandler for suggestions to solrconfig.xml
+- Using org.apache.solr.client.solrj.SolrClient execute suggest query
 
 ## Demo
 ### Implementation
 
-I implemented each of task as separate packages instead of modules,
-I had huge problem with sharing spring beans between modules.
-(Already started reading 'Spring in action V') 
+As we agree I used Elastic Search instead of Solr,
 
-### Quality
-
-EventServiceImpl tested
-need to add MVC tests
+more complicated query needs to be implemented(for example: grouping by, sorting)
 
 ### Presentation
 
-perform CRUD operations with swagger
+docker run -d --name es762 -p 9200:9200 -e "discovery.type=single-node" elasticsearch:7.6.2
+import events.postman_collection.json to postman
+run evants/insert collection
+try out events/QUERY requests
 
-<details><summary>How to run?</summary>
-```
-run SpringBootApplication class Module33Application
-for API documentation visit http://localhost:8080/swagger-ui/
-```</details>
